@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>KİTAPSEVER</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+</head>
+<body>
+    <div class="dropdown">
+       
+        <div style="background-color:grey">
+            <style>
+                ul {
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                    overflow: hidden;
+                    background-color: #34495e;
+                }
+
+                li {
+                    display: inline-block;
+                }
+
+                    li a {
+                        display: block;
+                        color: white;
+                        text-align: center;
+                        padding: 14px 16px;
+                        text-decoration: none;
+                    }
+
+                        li a:hover {
+                            background-color: #f39c12;
+                        }
+
+                ul li ul {
+                    background-color: #2c3e50;
+                    display: none;
+                    position: absolute;
+                    width: 100px
+                }
+
+                ul li:hover ul {
+                    display: block;
+                }
+
+                li ul li {
+                    display: block;
+                }
+            </style>
+
+            <li><a class="dropdown-item" href="/Urun/Index">Ürünler</a></li>
+            <li><a class="dropdown-item" href="/Kategori/Index">Kategoriler</a></li>
+            <li><a class="dropdown-item" href="Satis/Index">Satışlar</a></li>
+            <li><a class="dropdown-item" href="/Sepet/Index"><img src="~/Content/Image/sepet1.png" width="30" height="30" /><label style="color:red">@{Html.RenderAction("SepetCount", "Sepet");}</label></a></li>
+            <li><a class="dropdown-item" href="/Account/LogOut">Çıkış Yap</a></li>
+            <li><a class="dropdown-item" href="/Account/Login">Giriş</a></li>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="container">
+        @RenderBody()
+    </div>
+    <style>
+    </style>
+
+</body>
+</html>

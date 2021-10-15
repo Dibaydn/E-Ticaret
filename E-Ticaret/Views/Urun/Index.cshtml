@@ -1,0 +1,78 @@
+﻿@using E_Ticaret.Models
+@model List<Urun>
+
+<br />
+<br />
+<a href="/Urun/Ekle" class="btn btn-primary">Ekle</a>
+<br />
+<br />
+
+<div class="container">
+    <div class="row">
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                <thead>
+
+                    <tr>
+                        <th>Resim</th>
+                        <th>Ad</th>
+                        <th>Açıklama</th>
+                        <th>Fiyat</th>
+                        <th>Stok</th>
+                        <th>Kategori</th>
+                        <th>Sil</th>
+                        <th>Düzenle</th>
+                        @if (User.IsInRole("A"))
+                        {
+                            <th>Sil</th>
+                            <th>Düzenle</th>
+                        }
+
+                        @if (User.IsInRole("U"))
+                        {
+                            <th>Sepete Ekle</th>
+                        }
+
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><img src="~/Content/Image/@item.Resim" width="80" height="80" /></td>
+                            <td>@item.ad</td>
+                            <td>@item.Aciklama</td>
+                            <td>@item.Fiyat</td>
+                            <td>@item.Stok</td>
+                            <td>@item.Kategori.Ad</td>
+                            <td>@Html.ActionLink("Sil", "Sil", new { id = item.ID }, new { @class = "btn btn-danger", Onclick = "return confirm('silmek İstiyor Musunuz?')" })</td>
+                            <td><a href="/Urun/Guncelle/@item.ID" class="btn btn-warning">Düzenle</a></td>
+                            <td><a href="/Sepet/SepeteEkle/@item.ID" class="btn btn-success">Sepete Ekle</a></td>
+                            @if (User.IsInRole("A"))
+                            {
+                                <td>@Html.ActionLink("Sil", "Sil", new { id = item.ID }, new { @class = "btn btn-danger", Onclick = "return confirm('silmek İstiyor Musunuz?')" })</td>
+                                <td><a href="/Urun/Guncelle/@item.ID" class="btn btn-warning"></a></td>
+                            }
+                            @if (User.IsInRole("U"))
+                            {
+                                <td><a href="/Sepet/SepeteEkle/@item.ID" class="btn btn-success">Sepete Ekle</a></td>
+                            }
+
+
+
+                        </tr>
+                    }
+
+
+
+                </thead>
+
+            </table>
+
+        </div>
+    </div>
+</div>

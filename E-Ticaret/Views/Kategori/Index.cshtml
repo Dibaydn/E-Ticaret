@@ -1,0 +1,44 @@
+﻿@using E_Ticaret.Models
+@model List<Kategori>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<a href="/Kategori/Ekle" class="btn btn-primary">Ekle</a>
+<br />
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Ad</th>
+        <th>Açıklama</th>
+        <th>Sil</th>
+        <th>Düzenle</th>
+        @if (User.IsInRole("A"))
+        {
+            <th>Sil</th>
+            <th>Düzenle</th>
+        }
+
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+    <td>@item.Ad</td>
+    <td>@item.Aciklama</td>
+    <td>@Html.ActionLink("Sil", "Sil", new { id = item.Id }, new { @class = "btn btn-danger", Onclick = "return confirm('silmek İstiyor Musunuz?')" })</td>
+    <td><a href="/Kategori/Guncelle/@item.Id" class="btn btn-warning">Düzenle</a></td>
+    @if (User.IsInRole("A"))
+    {
+        <td>@Html.ActionLink("Sil", "Sil", new { id = item.Id }, new { @class = "btn btn-danger", Onclick = "return confirm('silmek İstiyor Musunuz?')" })</td>
+        <td><a href="/Kategori/Guncelle/@item.Id" class="btn btn-warning">Düzenle</a></td>
+    }
+
+</tr>
+
+    }
+</table>
+
